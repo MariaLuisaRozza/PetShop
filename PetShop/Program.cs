@@ -27,7 +27,7 @@
                     int n1 = Convert.ToInt32(Console.ReadLine()!);
                     List<RotaPasseador> rotas = ValorRota();
                     int n2 = Convert.ToInt32(Console.ReadLine()!);
-                    sadsad(n1, n2, passeadores, rotas);
+                    sadsad(n1, n2, passeadores, rotas); //criar função
                         ; break;
                 case 2: break;
                 case 3: break;
