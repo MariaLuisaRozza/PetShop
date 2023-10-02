@@ -27,11 +27,17 @@
                     int n1 = Convert.ToInt32(Console.ReadLine()!);
                     List<RotaPasseador> rotas = ValorRota();
                     int n2 = Convert.ToInt32(Console.ReadLine()!);
-                    sadsad(n1, n2, passeadores, rotas); //criar função
-                        ; break;
-                case 2: break;
-                case 3: break;
-                default: Console.WriteLine("Digite uma opção válida!");break;
+                    SelecaoPasseador(n1, n2, passeadores, rotas);
+                    ; break;
+                case 2:
+                    Banho();
+                    break;
+                case 3:
+                    ListaProduto();
+                    break;
+                default: 
+                    Console.WriteLine("Digite uma opção válida!");
+                    break;
             }
         }
 
@@ -52,8 +58,98 @@
 
         }
 
-        static List<Passeador> ListaPasseadores()
+        static void Banho()
         {
+            Console.Clear();
+            BanhoETosa b = new BanhoETosa();
+            BanhoETosa.MostrarTransporte();
+            b.VerificacaoDomiciliar = Console.ReadLine().ToLower();
+            
+
+            BanhoETosa.MostrarBanhoETosa();
+            int auxiliar= int.Parse(Console.ReadLine());
+            b.Valor = auxiliar;
+            Console.WriteLine($"O animal vai ser buscado em casa? {b.VerificacaoDomiciliar}");
+            
+            switch (auxiliar )
+            {
+                case 1: Console.WriteLine($"Somente Banho: R$ { b.Valor}"); break;
+                case 2: Console.WriteLine($"Somente Tosa: R$ {b.Valor}"); break;
+                case 3: Console.WriteLine($"Banho e Tosa: R$ {b.Valor}"); break;
+                default: Console.WriteLine("Digite uma opção válida!"); break;
+
+            }
+        }
+
+        static List<Cliente> ListaDeClientes()
+
+        {
+
+            Cliente cliente1 = new Cliente();
+
+            cliente1.Nome = "Jonas";
+
+            cliente1.Cachorro = "Zeus";
+
+            cliente1.Telefone = "3354-2546";
+
+            Cliente cliente2 = new Cliente();
+
+            cliente2.Nome = "Joanderson";
+
+            cliente2.Cachorro = "Bituca";
+
+            cliente2.Telefone = "3345-5451";
+
+            Cliente cliente3 = new Cliente();
+
+            cliente3.Nome = "Jesus";
+
+            cliente3.Cachorro = "Cristo";
+
+            cliente3.Telefone = "3456-2123";
+
+
+
+
+
+
+
+            List<Cliente> clientes = new List<Cliente>();
+
+            clientes.Add(cliente1);
+
+            clientes.Add(cliente2);
+
+            clientes.Add(cliente3);
+
+
+
+
+
+            foreach (Cliente cliente in clientes)
+
+            {
+
+                Console.WriteLine(cliente.Nome);
+
+            }
+
+
+
+
+
+            return clientes;
+        }
+
+
+
+
+
+            static List<Passeador> ListaPasseadores()
+        {
+            Console.Clear();
+            Console.WriteLine(" Escolha o passeador: ");
             Passeador p1 = new Passeador();
             p1.NomePasseador = "Ricardo";
             Passeador p2 = new Passeador();
@@ -65,10 +161,12 @@
             passeadores.Add(p1);
             passeadores.Add(p2);
             passeadores.Add(p3);
-
+            int i = 0;
             foreach (Passeador s in passeadores)
             {
-                Console.WriteLine(s.NomePasseador);
+        
+                i++;
+                Console.WriteLine(i + "." + s.NomePasseador);
             }
 
             return passeadores;
@@ -77,6 +175,8 @@
 
         static List<RotaPasseador> ValorRota()
         {
+            Console.Clear();
+            Console.WriteLine(" Escolha a rota de passeio: ");
             RotaPasseador loc1 = new RotaPasseador();
             loc1.LocalRota = "Parque";
             loc1.ValorRota = 5.0;
@@ -91,39 +191,100 @@
             rotas.Add(loc1);
             rotas.Add(loc2);
             rotas.Add(loc3);
-
+            int i = 0;
             foreach (RotaPasseador rota in rotas)
             {
-                Console.WriteLine($"{rota.LocalRota} = {rota.ValorRota}");
+                
+                i++;
+                Console.WriteLine($"{i}.{rota.LocalRota} = R$ {rota.ValorRota} ");
             }
 
             return rotas;
         }
 
-        static void SelecaoPasseador(int n1, int n2, List<Passeador> passeadores, List<RotaPasseador> rotas,)
+        static void SelecaoPasseador(int n1, int n2, List<Passeador> passeadores, List<RotaPasseador> rotas)
         {
+            Console.Clear();
+
+            string a = "";
+            string b = "";
             switch (n1)
             {
                 case 1:
-                    string a = passeadores[0].NomePasseador;
+                    a = passeadores[0].NomePasseador;
                     break;
                 case 2:
-                    string b = passeadores[1].NomePasseador;
+                    a = passeadores[1].NomePasseador;
                     break;
                 case 3:
-                    string c = passeadores[2].NomePasseador;
+                    a = passeadores[2].NomePasseador;
                     break;
             }
 
             switch (n2)
             {
                 case 1:
-                    string d = rotas[0].LocalRota + " : " +  rotas[0].ValorRota.ToString();
+                    b = rotas[0].LocalRota + " : R$" +  rotas[0].ValorRota.ToString();
                     break;
                 case 2:
-                    string e = rotas[1].LocalRota + " : " + rotas[1].ValorRota.ToString(); 
+                    b = rotas[1].LocalRota + " : R$" + rotas[1].ValorRota.ToString(); 
                     break;
+                case 3: 
+                    b = rotas[2].LocalRota + " : R$" + rotas[2].ValorRota.ToString();
+                    break;
+
             }
+
+            Console.WriteLine($"{a}\n{b}");
+        }
+
+        public static List<Produto> ListaProduto()
+        {
+            Produto p1 = new Produto();
+            p1.Nome = "Coleira";
+            Produto p2 = new Produto();
+            p2.Nome = "Roupa";
+            Produto p3 = new Produto();
+            p3.Nome = "Brinquedo";
+            Produto p4 = new Produto();
+            p4.Nome = "Produto Higienico";
+            Produto p5 = new Produto();
+            p5.Nome = "Tigela";
+            Produto p6 = new Produto();
+            p6.Nome = "Caminha";
+            Produto p7 = new Produto();
+            p7.Nome = "Produto médico";
+
+
+
+            Console.ReadLine();
+
+
+
+            List<Produto> produtos = new List<Produto>();
+            produtos.Add(p1);
+            produtos.Add(p2);
+            produtos.Add(p3);
+            produtos.Add(p4);
+            produtos.Add(p5);
+            produtos.Add(p6);
+            produtos.Add(p7);
+
+
+
+            foreach (Produto s in produtos)
+            {
+                Console.WriteLine(s.Nome);
+            }
+
+
+
+            return produtos;
+
+
+
+
+
         }
 
 
